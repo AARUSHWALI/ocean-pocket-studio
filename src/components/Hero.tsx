@@ -1,0 +1,133 @@
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Waves, Brain, Database, TrendingUp } from "lucide-react";
+import { Link } from "react-router-dom";
+
+interface HeroProps {
+  onViewDashboard: () => void;
+}
+
+const Hero = ({ onViewDashboard }: HeroProps) => {
+  const features = [
+    {
+      icon: Brain,
+      title: "AI-Powered Analysis",
+      description: "RAG-powered LLM for intelligent oceanographic data queries"
+    },
+    {
+      icon: Database,
+      title: "Real-time Data",
+      description: "ARGO floats, gliders, buoys, and satellite feeds integration"
+    },
+    {
+      icon: TrendingUp,
+      title: "Predictive Insights",
+      description: "Trend analysis, forecasts, and anomaly detection"
+    }
+  ];
+
+  return (
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Animated Background */}
+      <div className="absolute inset-0 bg-depth-gradient">
+        <div className="absolute inset-0 bg-ocean-gradient opacity-20"></div>
+        <div className="absolute top-20 left-10 w-32 h-32 bg-accent/10 rounded-full blur-xl animate-float"></div>
+        <div className="absolute bottom-20 right-10 w-48 h-48 bg-primary-glow/10 rounded-full blur-2xl animate-wave"></div>
+        <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-secondary/10 rounded-full blur-lg animate-float" style={{animationDelay: '2s'}}></div>
+      </div>
+
+      <div className="container mx-auto px-4 pt-16 relative z-10">
+        <div className="max-w-4xl mx-auto text-center">
+          {/* Main Heading */}
+          <div className="mb-8">
+            <div className="inline-flex items-center justify-center p-2 bg-accent/10 rounded-full mb-6 animate-glow">
+              <Waves className="w-6 h-6 text-accent mr-2" />
+              <span className="text-sm font-medium text-accent">Next-Gen Ocean Intelligence</span>
+            </div>
+            
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+              <span className="bg-wave-gradient bg-clip-text text-transparent">
+                Unlock Ocean
+              </span>
+              <br />
+              <span className="text-foreground">
+                Intelligence with AI
+              </span>
+            </h1>
+            
+            <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
+              Interact with oceanographic data through natural language. Get AI-powered insights, 
+              predictive analytics, and real-time monitoring for climate, fisheries, and disaster management.
+            </p>
+          </div>
+
+          {/* CTA Buttons */}
+          <div className="mb-16">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link to="/chat">
+                <Button 
+                  size="lg" 
+                  className="bg-ocean-gradient hover:shadow-ocean transition-wave text-lg px-8 py-6 font-semibold group"
+                >
+                  Start AI Chat
+                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-smooth" />
+                </Button>
+              </Link>
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="border-accent/30 hover:bg-accent/10 hover:border-accent transition-wave text-lg px-8 py-6"
+                onClick={onViewDashboard}
+              >
+                View Dashboard
+              </Button>
+            </div>
+          </div>
+
+          {/* Features Grid */}
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {features.map((feature, index) => (
+              <div 
+                key={index} 
+                className="group p-6 rounded-2xl bg-card/50 backdrop-blur-sm border border-border/50 hover:border-accent/30 hover:shadow-ocean transition-wave"
+                style={{animationDelay: `${index * 0.2}s`}}
+              >
+                <div className="w-12 h-12 bg-ocean-gradient rounded-xl flex items-center justify-center mb-4 group-hover:animate-float">
+                  <feature.icon className="w-6 h-6 text-primary-foreground" />
+                </div>
+                <h3 className="text-lg font-semibold mb-2 group-hover:text-accent transition-smooth">
+                  {feature.title}
+                </h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  {feature.description}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* Example Queries Section */}
+          <div className="mt-16 max-w-4xl mx-auto">
+            <h3 className="text-xl font-semibold mb-4 text-center">Example Queries</h3>
+            <div className="flex flex-wrap gap-3 justify-center">
+              {[
+                "Plot salinity near the equator for March 2024",
+                "Compare BGC parameters in the Arabian Sea",
+                "Show recent float trajectories"
+              ].map((query, index) => (
+                <Link key={index} to="/chat">
+                  <Button
+                    variant="outline"
+                    className="border-accent/30 hover:bg-accent/10 hover:border-accent transition-wave"
+                  >
+                    {query}
+                  </Button>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Hero;
