@@ -80,10 +80,45 @@ export default {
             height: "0",
           },
         },
+        wave: {
+          "0%, 100%": {
+            transform: "translateY(0) translateX(0)",
+          },
+          "25%": {
+            transform: "translateY(-20px) translateX(10px)",
+          },
+          "50%": {
+            transform: "translateY(0) translateX(20px)",
+          },
+          "75%": {
+            transform: "translateY(20px) translateX(10px)",
+          },
+        },
+        float: {
+          "0%, 100%": {
+            transform: "translateY(0)",
+          },
+          "50%": {
+            transform: "translateY(-20px)",
+          },
+        },
+        "fade-in-up": {
+          from: {
+            opacity: "0",
+            transform: "translateY(30px)",
+          },
+          to: {
+            opacity: "1",
+            transform: "translateY(0)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        wave: "wave 8s ease-in-out infinite",
+        float: "float 6s ease-in-out infinite",
+        "fade-in-up": "fade-in-up 1s ease-out forwards",
       },
     },
   },
