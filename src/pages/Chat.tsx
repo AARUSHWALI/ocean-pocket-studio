@@ -24,7 +24,7 @@ const Chat = () => {
             <div className="text-center">
               <h1 className="text-3xl md:text-4xl font-bold mb-4">
                 <span className="bg-wave-gradient bg-clip-text text-transparent">
-                  FloatMind AI Chat
+                  FloatChat AI Chat
                 </span>
               </h1>
               <p className="text-muted-foreground text-lg mb-8">

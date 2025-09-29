@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { MapPin, Activity, AlertCircle, RefreshCw } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import oceanMapDemo from "@/assets/ocean-map-demo.jpg";
 
 interface OceanFloat {
   id: string;
@@ -85,28 +86,32 @@ const OceanMap = () => {
       </div>
 
       <div className="grid lg:grid-cols-3 gap-4">
-        {/* Map Area - Placeholder for now */}
-        <Card className="lg:col-span-2 h-[500px] bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-950 dark:to-cyan-950 flex items-center justify-center relative overflow-hidden">
-          <div className="text-center">
-            <MapPin className="w-16 h-16 mx-auto mb-4 text-muted-foreground" />
-            <h4 className="text-lg font-medium mb-2">Interactive Ocean Map</h4>
-            <p className="text-muted-foreground">
-              Advanced mapping integration coming soon
-            </p>
-          </div>
-
-          {/* Float markers overlay - visual representation */}
+        {/* Map Area - Static Demo Map */}
+        <Card className="lg:col-span-2 h-[500px] relative overflow-hidden">
+          <img 
+            src={oceanMapDemo} 
+            alt="Global Ocean Float Map" 
+            className="w-full h-full object-cover"
+          />
+          
+          {/* Float markers overlay */}
           <div className="absolute inset-0 pointer-events-none">
-            {floats.slice(0, 5).map((float, index) => (
+            {floats.slice(0, 8).map((float, index) => (
               <div
                 key={float.id}
-                className={`absolute w-3 h-3 rounded-full ${getStatusColor(float.status)} animate-pulse`}
+                className={`absolute w-4 h-4 rounded-full ${getStatusColor(float.status)} animate-pulse shadow-lg`}
                 style={{
-                  left: `${20 + index * 15}%`,
-                  top: `${30 + index * 10}%`,
+                  left: `${15 + index * 11}%`,
+                  top: `${25 + (index % 3) * 20}%`,
                 }}
               />
             ))}
+          </div>
+
+          {/* Map Overlay Info */}
+          <div className="absolute top-4 left-4 bg-card/90 backdrop-blur-sm p-3 rounded-lg border border-border shadow-lg">
+            <p className="text-sm font-medium">Global ARGO Float Network</p>
+            <p className="text-xs text-muted-foreground">{floats.length} active floats</p>
           </div>
         </Card>
 

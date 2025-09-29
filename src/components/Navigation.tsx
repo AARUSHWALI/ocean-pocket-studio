@@ -25,7 +25,7 @@ const Navigation = () => {
             </div>
             <div className="flex flex-col">
               <span className="text-xl font-bold bg-wave-gradient bg-clip-text text-transparent">
-                FloatMind
+                FloatChat
               </span>
               <span className="text-xs text-muted-foreground -mt-1">
                 AI Ocean Intelligence
